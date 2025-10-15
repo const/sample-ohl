@@ -1,0 +1,12 @@
+test:
+  single:
+    enabledVariants:
+      - jOOQ
+      - jOOQ (Reflection)
+      - jOOQ (SQL only)
+  list:
+    enabledVariants:
+      - jOOQ
+      - jOOQ (Reflection)
+      - jOOQ (SQL only)
+

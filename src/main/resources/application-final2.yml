@@ -1,0 +1,11 @@
+test:
+  single:
+    enabledVariants:
+      - JSON
+      - jOOQ
+      - Horizontal (Stream D)
+  list:
+    enabledVariants:
+      - JSON
+      - jOOQ
+      - Horizontal (Stream D)

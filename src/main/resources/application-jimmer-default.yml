@@ -1,0 +1,11 @@
+jimmer:
+  default-batch-size: 100
+  default-list-batch-size: 16
+
+test:
+  single:
+    enabledVariants:
+      - Jimmer ORM
+  list:
+    enabledVariants:
+      - Jimmer ORM

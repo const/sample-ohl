@@ -1,0 +1,15 @@
+test:
+  single:
+    enabledVariants:
+      - Layered (LEFT JOIN)
+      - JSON
+      - jOOQ
+      - Horizontal (Compact)
+  list:
+    enabledVariants:
+      - Layered (LEFT JOIN)
+      - JSON
+      - JSON Extreme
+      - jOOQ
+      - Horizontal (Compact)
+

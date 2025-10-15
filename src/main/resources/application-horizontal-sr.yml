@@ -1,0 +1,8 @@
+test:
+  single:
+    enabledVariants:
+      - Horizontal (Stream R)
+  list:
+    enabledVariants:
+      - Horizontal (Stream R)
+

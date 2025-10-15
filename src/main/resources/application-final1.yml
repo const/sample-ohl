@@ -1,0 +1,12 @@
+test:
+  single:
+    enabledVariants:
+      - Layered
+      - Hibernate (Workaround)
+      - Hibernate (One To One)
+  list:
+    enabledVariants:
+      - Layered
+      - Hibernate (Workaround)
+      - Hibernate (One To One)
+

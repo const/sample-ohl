@@ -1,0 +1,8 @@
+test:
+  single:
+    enabledVariants:
+      - Spring Data JDBC
+  list:
+    enabledVariants:
+      - Spring Data JDBC
+

@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - Hibernate (Workaround)
+  list:
+    enabledVariants:
+      - Hibernate (Workaround)

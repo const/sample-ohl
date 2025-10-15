@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="list-rps" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="C:/dev/java/axiomjdk-24.0.1" />
+    <option name="MAIN_CLASS_NAME" value="sample.Application" />
+    <module name="db-side-or-mapping" />
+    <option name="PROGRAM_PARAMETERS" value="--spring.profiles.active=layered-all,threads-20,batch-size-1000 list-rps" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="sample.cofinguration.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

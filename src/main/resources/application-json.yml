@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - JSON
+  list:
+    enabledVariants:
+      - JSON

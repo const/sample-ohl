@@ -1,0 +1,15 @@
+test:
+  single:
+    enabledVariants:
+      - JSON
+      - JSON (SQL only)
+      - JSON (fastjson2)
+  list:
+    batch-sizes: 1000
+    enabledVariants:
+      - JSON
+      - JSON (SQL only)
+      - JSON (fastjson2)
+      - JSON Extreme
+      - JSON Extreme (SQL only)
+      - JSON Extreme (fastjson2)

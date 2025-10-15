@@ -1,0 +1,22 @@
+test:
+  single:
+    enabledVariants:
+      - Layered
+      - Hibernate (Workaround)
+      - Hibernate (One To One)
+      - JSON
+      - jOOQ
+      - Horizontal (Stream D)
+      - Multi-Query (JOIN)
+      - Multi-Query (By ID)
+  list:
+    enabledVariants:
+      - Layered
+      - Hibernate (Workaround)
+      - Hibernate (One To One)
+      - JSON
+      - jOOQ
+      - Horizontal (Stream D)
+      - Multi-Query (JOIN)
+      - Multi-Query (By ID)
+

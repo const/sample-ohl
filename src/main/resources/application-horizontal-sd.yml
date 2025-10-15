@@ -1,0 +1,8 @@
+test:
+  single:
+    enabledVariants:
+      - Horizontal (Stream D)
+  list:
+    enabledVariants:
+      - Horizontal (Stream D)
+

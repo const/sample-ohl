@@ -1,0 +1,4 @@
+test:
+  list:
+    enabledVariants:
+      - JSON Extreme (fastjson2)

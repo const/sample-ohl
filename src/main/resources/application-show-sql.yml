@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    show-sql: true
+
+jimmer:
+  show-sql: true
+  pretty-sql: true
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc: DEBUG
+      jooq:
+        tools:
+          LoggerListener: DEBUG

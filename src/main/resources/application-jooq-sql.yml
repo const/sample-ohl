@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - jOOQ (SQL only)
+  list:
+    enabledVariants:
+      - jOOQ (SQL only)

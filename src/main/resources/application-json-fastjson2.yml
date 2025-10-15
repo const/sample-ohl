@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - JSON (fastjson2)
+  list:
+    enabledVariants:
+      - JSON (fastjson2)

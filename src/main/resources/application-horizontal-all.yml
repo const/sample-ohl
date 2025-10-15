@@ -1,0 +1,14 @@
+test:
+  single:
+    enabledVariants:
+      - Horizontal (Compact)
+      - Horizontal (Stream D)
+      - Horizontal (Stream R)
+      - Spring Data JDBC (Single Query)
+  list:
+    enabledVariants:
+      - Horizontal (Compact)
+      - Horizontal (Stream D)
+      - Horizontal (Stream R)
+      - Spring Data JDBC (Single Query)
+

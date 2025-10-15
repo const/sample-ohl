@@ -1,0 +1,5 @@
+test:
+  single:
+    threads: 20
+  list:
+    threads: 20

@@ -1,0 +1,12 @@
+test:
+  single:
+    enabledVariants:
+      - Layered
+      - Layered (LEFT JOIN)
+      - Hibernate (Workaround)
+      - Hibernate (Workaround)
+  list:
+    enabledVariants:
+      - Layered
+      - Layered (LEFT JOIN)
+      - Hibernate (Workaround)

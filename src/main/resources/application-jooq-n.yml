@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - jOOQ (Nested)
+  list:
+    enabledVariants:
+      - jOOQ (Nested)

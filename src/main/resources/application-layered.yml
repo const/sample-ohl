@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - Layered
+  list:
+    enabledVariants:
+      - Layered

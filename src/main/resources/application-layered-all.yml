@@ -1,0 +1,17 @@
+test:
+  single:
+    enabledVariants:
+      - Layered
+      - Layered (LEFT JOIN)
+      - Hibernate (Workaround)
+      - Hibernate (One To One)
+      - Spring Data JDBC
+      - Jimmer ORM
+  list:
+    enabledVariants:
+      - Layered
+      - Layered (LEFT JOIN)
+      - Hibernate (Workaround)
+      - Hibernate (One To One)
+      - Spring Data JDBC
+      - Jimmer ORM

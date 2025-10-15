@@ -1,0 +1,50 @@
+spring:
+  jooq:
+    sql-dialect: Postgres
+  jpa:
+    database: POSTGRESQL
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5433/ohl?Application_Name=sample-ohl
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+    hikari:
+      minimum-idle: 20
+      maximum-pool-size: 20
+      idle-timeout: 30000
+      max-lifetime: 2000000
+      connection-timeout: 30000
+      pool-name: postgresConnectionPool
+      connection-test-query: SELECT 1
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc: INFO
+      jooq:
+        tools:
+          LoggerListener: INFO
+# Значения по умолчанию
+# Значения в тестах
+jimmer:
+  default-batch-size: 1000000000
+  default-list-batch-size: 1000000000
+
+test:
+  prepare:
+    batch-size: 1000
+    min-companies: 1000000
+  measure:
+    warm-up: 15s
+    main: 3m
+  single:
+    threads: 20
+  list:
+    threads: 10
+    batch-sizes: 1, 10, 100 , 1000
+

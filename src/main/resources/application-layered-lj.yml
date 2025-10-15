@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - Layered (LEFT JOIN)
+  list:
+    enabledVariants:
+      - Layered (LEFT JOIN)

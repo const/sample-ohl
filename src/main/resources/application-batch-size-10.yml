@@ -1,0 +1,3 @@
+test:
+  list:
+    batch-sizes: 10

@@ -1,0 +1,18 @@
+test:
+  single:
+    enabledVariants:
+      - jOOQ
+      - jOOQ (Nested)
+      - jOOQ (Nested, SQL only)
+      - jOOQ (Reflection)
+      - jOOQ (SQL only)
+      - JSON (SQL only)
+  list:
+    enabledVariants:
+      - jOOQ
+      - jOOQ (Nested)
+      - jOOQ (Nested, SQL only)
+      - jOOQ (Reflection)
+      - jOOQ (SQL only)
+      - JSON (SQL only)
+

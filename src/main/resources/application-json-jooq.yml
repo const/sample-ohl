@@ -1,0 +1,9 @@
+test:
+  single:
+    enabledVariants:
+      - JSON
+      - jOOQ
+  list:
+    enabledVariants:
+      - JSON
+      - jOOQ

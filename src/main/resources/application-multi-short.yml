@@ -1,0 +1,11 @@
+test:
+  single:
+    enabledVariants:
+      - Layered
+      - Multi-Query (By ID)
+      - Multi-Query (JOIN)
+  list:
+    enabledVariants:
+      - Layered
+      - Multi-Query (By ID)
+      - Multi-Query (JOIN)

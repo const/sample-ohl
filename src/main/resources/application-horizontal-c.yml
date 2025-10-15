@@ -1,0 +1,8 @@
+test:
+  single:
+    enabledVariants:
+      - Horizontal (Compact)
+  list:
+    enabledVariants:
+      - Horizontal (Compact)
+

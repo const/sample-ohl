@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - Hibernate (One To One)
+  list:
+    enabledVariants:
+      - Hibernate (One To One)

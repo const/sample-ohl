@@ -1,0 +1,35 @@
+services:
+  db:
+    container_name: sample_ohl_postgres
+    image: postgres:17.6
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ohl
+      PGDATA: /data/postgres
+    volumes:
+       - sample_ohl_postgres_data:/data/postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - sample_ohl
+  speedbump:
+    container_name: sample_ohl_speedbump
+    image: kffl/speedbump:v1.1.0
+    links:
+      - db
+    ports:
+      - "5435:5435"
+    networks:
+      - sample_ohl
+    command:
+      - "--port=5435"
+      - "--latency=1ms"
+      - "db:5432"
+
+networks:
+  sample_ohl:
+    driver: bridge
+
+volumes:
+  sample_ohl_postgres_data:

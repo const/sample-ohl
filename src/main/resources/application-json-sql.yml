@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - JSON (SQL only)
+  list:
+    enabledVariants:
+      - JSON (SQL only)

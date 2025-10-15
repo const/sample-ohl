@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - jOOQ (Reflection)
+  list:
+    enabledVariants:
+      - jOOQ (Reflection)

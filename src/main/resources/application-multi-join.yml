@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - Multi-Query (JOIN)
+  list:
+    enabledVariants:
+      - Multi-Query (JOIN)

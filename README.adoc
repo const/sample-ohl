@@ -1,0 +1,194 @@
+= Sample Code for Object Hierarchy Loading using Single Query (Joker 2025)
+:toc:
+
+== Running instructions
+
+=== Create database
+
+The database with needed ports and parameters can be created with the following command:
+
+[source]
+----
+cd src/main/docker/dborm-sample
+docker compose up
+----
+
+If other parameters are needed, the file link:src/main/resources/application.yml[] should be updated.
+
+=== Initialize database state
+
+On the first start, the database is filled with test data.
+The default parameters are:
+
+[source, yml]
+----
+test:
+  prepare:
+    batch-size: 10000
+    min-companies: 1000000
+----
+
+It might take several minutes to initialize the database. If a smaller database is sufficient, reduce the values.
+
+=== Run tests
+
+There are ready-to-use configurations for IDEA in the `.run/` directory.
+* `single-once` runs every available variant in single-object query mode. The configuration also dumps SQL.
+* `single-rps` runs a stress test for single object loading.
+* `list-once` runs every available variant in list query mode. The configuration also dumps SQL.
+* `list-rps` runs a stress test for list object loading.
+
+The configurations `single-once` and `list-once` can quickly check variants for correctness. They can also be copied by adding a new profile or modified to support running a specific variant.
+
+Configuration parameters can be set in `src/main/resources/application.yml` and in the profiles.
+
+== Cleanup instructions
+
+[source]
+----
+cd src/main/docker/sample-ohl-db
+docker compose rm -v
+----
+
+== Running with Async Profiler
+
+=== Base docker image
+
+First, build an image with async-profiler:
+
+[source]
+----
+cd <base-directory>/src/main/docker/jre-21-async-profiler
+docker build . -t const/jre-21-async-profiler
+----
+
+=== Execution scripts
+
+The script `init-docker-desktop.ps1` initializes WSL parameters to support kernel call profiling. This script is optional. If it is not run, Async Profiler will not show the kernel stack in CPU profiles. The Java part of the stack will still be shown. This script should be run after each restart of WSL (including computer reboots).
+
+There are also support scripts for profiling specific cases:
+
+* `single-cpu.ps1` runs a single-object test in CPU profiling mode
+* `single-wall.ps1` runs a single-object test in wall-clock profiling mode
+* `list-cpu.ps1` runs a list test in CPU profiling mode
+* `list-wall.ps1` runs a list test in wall-clock profiling mode
+
+The tests should be run after executing `mvn clean package` in the project directory, because they use JARs.
+
+The scripts should be run in the project directory.
+
+All tests support a comma-separated list of profiles as arguments. For example:
+
+[source]
+----
+./list-rps "jooq,batch-size-1000"
+----
+
+The line above runs the basic jOOQ variant with batch size 1000. Note that PowerShell separates arguments by commas, so they need to be quoted.
+
+Profile reports are stored in the directory `./target/report`. The report is named after the supplied configuration parameters and overwritten on each run.
+
+== Design
+
+Below is the UML diagram of DTO classes.
+
+[plantuml]
+----
+enum ContactType {
+    EMAIL
+    TELEGRAM
+    PHONE
+}
+enum VerificationStatus {
+    VERIFIED
+    INVALID
+}
+class CompanyDto {
+    id : UUID
+    name : String
+    description: String
+    url : String
+}
+class VerificationInfoDto {
+    timestamp : Instant
+    status : VerificationStatus
+    user : String
+    comment : String
+}
+class OfficeDto {
+    id : UUID
+    name : String
+    city : String
+    address : String
+}
+class ContactPersonDto {
+    id : UUID
+    name : String
+    position : String
+}
+class ContactDetailsDto {
+    type : ContactType
+    value : String
+}
+CompanyDto *-left- "0..1" VerificationInfoDto : verified
+CompanyDto *-down- "*" OfficeDto : offices
+CompanyDto *-right- "*" ContactPersonDto : contactPersons
+ContactPersonDto *-down- "*" ContactDetailsDto : details
+----
+
+== Environment
+
+=== Toxiproxy
+
+[source, yml]
+----
+  toxiproxy:
+    container_name: dborm_sample_toxiproxy_container
+    image: ghcr.io/shopify/toxiproxy:2.12.0
+    links:
+      - db
+    ports:
+      - "8474:8474"
+      - "5434:5434"
+    environment:
+      LOG_LEVEL: info
+    networks:
+      - dborm_sample_postgres
+    post_start:
+      - command: "/toxiproxy-cli create -l 0.0.0.0:5434 -u db:5432 postgres2ms"
+      - command: "/toxiproxy-cli toxic add -t latency -a latency=2 postgres2ms"
+----
+
+=== Speedbump
+
+[source,yml]
+----
+  speedbump:
+    container_name: dborm_sample_speedbump_container
+    image: kffl/speedbump:v1.1.0
+    links:
+      - db
+    ports:
+      - "5435:5435"
+    networks:
+      - dborm_sample_postgres
+    command:
+      - "--port=5435"
+      - "--latency=1ms"
+      - "db:5432"
+----
+
+== Related Bugs
+
+* Spring Data Relational
+** https://github.com/spring-projects/spring-data-relational/issues/2122[#2122 Spring data relational generates incorrect single query for PostgreSQL with two one-to-many relationships present]
+* Jimmer ORM
+** https://github.com/babyfish-ct/jimmer/issues/1070[#1070 [BUG\] - OneToOne as primary key]
+** https://github.com/babyfish-ct/jimmer/issues/1163[#1163 [BUG\] High lock contention on object loading]
+* jOOQ
+** https://github.com/jOOQ/jOOQ/issues/18817[#18817 Avoid unnecessary StringReader and StringWriter allocations and data transfer in MULTISET deserialisation]
+** https://github.com/jOOQ/jOOQ/issues/18909[#18909 jOOQ Performance Anomalies with PostgreSQL]
+** https://github.com/jOOQ/jOOQ/issues/18845[#18845 Add a warning to the Query::bind Javadoc about the method not being very useful in general]
+** https://bugs.openjdk.org/browse/JDK-8366424[Potential performance issue in generated record hashCode() default implementation]
+* Hibernate
+** https://hibernate.atlassian.net/browse/HHH-19313[EntityGraph and OneToOne relationship is loading twice as many queries]

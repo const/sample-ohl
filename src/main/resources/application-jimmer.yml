@@ -1,0 +1,7 @@
+test:
+  single:
+    enabledVariants:
+      - Jimmer ORM
+  list:
+    enabledVariants:
+      - Jimmer ORM

@@ -1,0 +1,4 @@
+test:
+  list:
+    batch-sizes: 10,100,1000
+
